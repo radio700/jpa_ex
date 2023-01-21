@@ -13,7 +13,9 @@ import lombok.ToString;
 @ToString
 public class ProductDto {
     private String name;
-    private String price;
-    private String stock;
+
+    private int price;
+
+    private int stock;
 
 }
