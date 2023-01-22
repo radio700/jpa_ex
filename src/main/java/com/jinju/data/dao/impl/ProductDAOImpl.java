@@ -25,14 +25,14 @@ public class ProductDAOImpl implements ProductDAO{
     }
 
     @Override
-    public Product selectProduct(Long number) {
-        Product selectedProduct = productRepository.getReferenceById(number);
+    public Product selectProduct(Long num) {
+        Product selectedProduct = productRepository.getReferenceById(num);
         return selectedProduct;
     }
 
     @Override
-    public Product updateProductName(Long number, String name) throws Exception {
-        Optional<Product> selectedProduct = productRepository.findById(number);
+    public Product updateProductName(Long num, String name) throws Exception {
+        Optional<Product> selectedProduct = productRepository.findById(num);
 
         System.out.println("파인드바이아이디 : "+selectedProduct);
 
@@ -54,8 +54,8 @@ public class ProductDAOImpl implements ProductDAO{
     }
 
     @Override
-    public void deleteProduct(Long number) throws Exception {
-        Optional<Product> seletedProduct = productRepository.findById(number);
+    public void deleteProduct(Long num) throws Exception {
+        Optional<Product> seletedProduct = productRepository.findById(num);
 
         if(seletedProduct.isPresent()){
             Product product = seletedProduct.get();

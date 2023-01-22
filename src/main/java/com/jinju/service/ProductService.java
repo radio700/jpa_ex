@@ -4,11 +4,34 @@ import com.jinju.data.dto.ProductDto;
 import com.jinju.data.dto.ProductResponseDto;
 
 public interface ProductService {
-    ProductResponseDto getProduct(Long number);
 
+    /**
+     * getProduct
+     * @param num
+     * @return
+     */
+    ProductResponseDto getProduct(Long num);
+
+    /**
+     * saveProduct
+     * @param productDto
+     * @return
+     */
     ProductResponseDto saveProduct(ProductDto productDto);
 
-    ProductResponseDto changeProductName(Long number, String name) throws Exception;
+    /**
+     * changeProductName
+     * @param num
+     * @param name
+     * @return
+     * @throws Exception
+     */
+    ProductResponseDto changeProductName(Long num, String name) throws Exception;
 
-    void deleteProduct(Long number) throws Exception;
+    /**
+     * deleteProduct
+     * @param num
+     * @throws Exception
+     */
+    void deleteProduct(Long num) throws Exception;
 }

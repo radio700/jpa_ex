@@ -21,9 +21,14 @@ public class ProductServiceImpl implements ProductService{
 
 
 
+    /**
+     * getProduct
+     * @param num
+     * @return productResponseDto
+     */
     @Override
-    public ProductResponseDto getProduct(Long number) {
-        Product product = productDAO.selectProduct(number);
+    public ProductResponseDto getProduct(Long num) {
+        Product product = productDAO.selectProduct(num);
 
         System.out.println("Service_product : "+product);
         System.out.println("Service_product.getNum() : "+product.getNum());
@@ -38,6 +43,12 @@ public class ProductServiceImpl implements ProductService{
         
     }
 
+
+    /**
+     * saveProduct
+     * @param productDto
+     * @return productResponseDto
+     */
     @Override
     public ProductResponseDto saveProduct(ProductDto productDto) {
         Product product = new Product();
@@ -48,37 +59,48 @@ public class ProductServiceImpl implements ProductService{
         product.setCreatedAt(LocalDateTime.now());
         product.setUpdatedAt(LocalDateTime.now());
 
-        Product saveProduct = productDAO.insertProduct(product);
-        System.out.println("service_saveProduct : "+ saveProduct);
+        Product savedProduct = productDAO.insertProduct(product);
+        System.out.println("service_saveProduct : "+ savedProduct);
 
         ProductResponseDto productResponseDto = new ProductResponseDto();
-
-        productResponseDto.setNum(saveProduct.getNum());
-        productResponseDto.setName(saveProduct.getName());
-        productResponseDto.setPrice(saveProduct.getPrice());
-        productResponseDto.setStock(saveProduct.getStock());
+        productResponseDto.setNum(savedProduct.getNum());
+        productResponseDto.setName(savedProduct.getName());
+        productResponseDto.setPrice(savedProduct.getPrice());
+        productResponseDto.setStock(savedProduct.getStock());
 
         return productResponseDto;
     }
 
+
+    /**
+     * changeProductName
+     * @param num
+     * @param name
+     * @return productResponseDto
+     * @throws Exception
+     */
     @Override
-    public ProductResponseDto changeProductName(Long number, String name) throws Exception {
-        Product changedProduct = productDAO.updateProductName(number, name);
+    public ProductResponseDto changeProductName(Long num, String name) throws Exception {
+        Product changedProduct = productDAO.updateProductName(num, name);
 
         ProductResponseDto productResponseDto = new ProductResponseDto();
-
         productResponseDto.setNum(changedProduct.getNum());
         productResponseDto.setName(changedProduct.getName());
         productResponseDto.setPrice(changedProduct.getPrice());
         productResponseDto.setStock(changedProduct.getStock());
-        
 
         return productResponseDto;
     }
 
+
+    /**
+     * deleteProduct
+     * @param num
+     * @throws Exception
+     */
     @Override
-    public void deleteProduct(Long number) throws Exception {
-        productDAO.deleteProduct(number);
+    public void deleteProduct(Long num) throws Exception {
+        productDAO.deleteProduct(num);
         
     }
     
