@@ -1,19 +1,14 @@
 package com.jinju.Controller;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jinju.data.dto.ChangeProductNameDto;
@@ -26,6 +21,8 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 @RestController
 @RequestMapping("/product")
 public class ProductController {
+
+    //http://localhost:8080/swagger-ui/index.html
 
     private final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
     
@@ -51,6 +48,7 @@ public class ProductController {
      */
     @GetMapping()
     public ResponseEntity<ProductResponseDto> getProduct(Long num) {
+        System.out.println("num : "+num);
         ProductResponseDto productResponseDto = productService.getProduct(num);
         System.out.println("@@@@@@@@@@@@@@@@@@@@@productResponseDto.toString()\n"+productResponseDto.toString());
         

@@ -2,21 +2,25 @@ package com.jinju.service.Impl;
 
 import java.time.LocalDateTime;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import com.jinju.data.dao.ProductDAO;
 import com.jinju.data.dto.ProductDto;
 import com.jinju.data.dto.ProductResponseDto;
 import com.jinju.data.entity.Product;
+import com.jinju.data.repository.ProductRepository;
 import com.jinju.service.ProductService;
 
 @Service
 public class ProductServiceImpl implements ProductService{
+    
 
-    private final ProductDAO productDAO;
+    private final Logger LOGGER = LoggerFactory.getLogger(ProductServiceImpl.class);
+    private ProductRepository productRepository;
 
-    public ProductServiceImpl(ProductDAO productDAO){
-        this.productDAO = productDAO;
+    public ProductServiceImpl(ProductRepository productRepository) {
+        this.productRepository = productRepository;
     }
 
 
@@ -28,10 +32,10 @@ public class ProductServiceImpl implements ProductService{
      */
     @Override
     public ProductResponseDto getProduct(Long num) {
-        Product product = productDAO.selectProduct(num);
+        LOGGER.info("[getProduct] input number : {}", num);
+        Product product = productRepository.findById(num).get();
 
         System.out.println("Service_product : "+product);
-        System.out.println("Service_product.getNum() : "+product.getNum());
 
         ProductResponseDto productResponseDto = new ProductResponseDto();
         productResponseDto.setNum(product.getNum());
@@ -51,28 +55,23 @@ public class ProductServiceImpl implements ProductService{
      */
     @Override
     public ProductResponseDto saveProduct(ProductDto productDto) {
-        //↑Product(num=null, name=null, price=null, stock=null, createdAt=null, updatedAt=null)
-        
+        LOGGER.info("[saveProduct] productDTO : {}", productDto.toString());
         Product product = new Product();
-
-        System.out.println("productDto.getName() : "+productDto.getName());
         product.setName(productDto.getName());
         product.setPrice(productDto.getPrice());
         product.setStock(productDto.getStock());
-        product.setIns_dttm(LocalDateTime.now());
-        product.setUpd_dttm(LocalDateTime.now());
 
-        Product savedProduct = productDAO.insertProduct(product);
+        Product savedProduct = productRepository.save(product);
+        LOGGER.info("[saveProduct] savedProduct : {}", savedProduct);
 
         ProductResponseDto productResponseDto = new ProductResponseDto();
         productResponseDto.setNum(savedProduct.getNum());
         productResponseDto.setName(savedProduct.getName());
         productResponseDto.setPrice(savedProduct.getPrice());
         productResponseDto.setStock(savedProduct.getStock());
+
         return productResponseDto;
-
     }
-
 
     /**
      * changeProductName
@@ -83,7 +82,9 @@ public class ProductServiceImpl implements ProductService{
      */
     @Override
     public ProductResponseDto changeProductName(Long num, String name) throws Exception {
-        Product changedProduct = productDAO.updateProductName(num, name);
+        Product foundProduct = productRepository.findById(num).get();
+        foundProduct.setName(name);
+        Product changedProduct = productRepository.save(foundProduct);
 
         ProductResponseDto productResponseDto = new ProductResponseDto();
         productResponseDto.setNum(changedProduct.getNum());
@@ -102,7 +103,7 @@ public class ProductServiceImpl implements ProductService{
      */
     @Override
     public void deleteProduct(Long num) throws Exception {
-        productDAO.deleteProduct(num);
+        productRepository.deleteById(num);
         
     }
     
