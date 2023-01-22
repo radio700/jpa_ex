@@ -33,6 +33,7 @@ public class PostController {
             String value = curMap.get(key);
             sb.append(key + " : "+value + "\n");
         }
+        System.out.println("sb.toString() : "+sb.toString());
         return sb.toString();
     }
 

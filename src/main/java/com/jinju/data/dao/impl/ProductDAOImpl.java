@@ -20,6 +20,7 @@ public class ProductDAOImpl implements ProductDAO{
 
     @Override//객체생성
     public Product insertProduct(Product product) {
+        System.out.println("DAO product.toString : "+product.toString());
         Product savedProduct  = productRepository.save(product);
         return savedProduct ;
     }
@@ -43,7 +44,7 @@ public class ProductDAOImpl implements ProductDAO{
             System.out.println("파인드바이아이디.get한거 -> "+selectedProduct.get());
 
             product.setName(name);//이름 바꾸고
-            product.setUpdatedAt(LocalDateTime.now());//upd넣고
+            product.setUpd_dttm(LocalDateTime.now());//upd넣고
 
             updatedProduct = productRepository.save(product);//세이브
         } else {

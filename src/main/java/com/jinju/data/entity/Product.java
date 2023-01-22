@@ -22,7 +22,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long num;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String name;
 
     @Column(nullable = false)
@@ -31,8 +31,8 @@ public class Product {
     @Column(nullable = false)
     private Integer stock;
 
-    private LocalDateTime createdAt;
+    private LocalDateTime ins_dttm;
 
-    private LocalDateTime updatedAt;
+    private LocalDateTime upd_dttm;
 
 }

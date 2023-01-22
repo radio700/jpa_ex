@@ -51,24 +51,26 @@ public class ProductServiceImpl implements ProductService{
      */
     @Override
     public ProductResponseDto saveProduct(ProductDto productDto) {
+        //↑Product(num=null, name=null, price=null, stock=null, createdAt=null, updatedAt=null)
+        
         Product product = new Product();
 
+        System.out.println("productDto.getName() : "+productDto.getName());
         product.setName(productDto.getName());
         product.setPrice(productDto.getPrice());
         product.setStock(productDto.getStock());
-        product.setCreatedAt(LocalDateTime.now());
-        product.setUpdatedAt(LocalDateTime.now());
+        product.setIns_dttm(LocalDateTime.now());
+        product.setUpd_dttm(LocalDateTime.now());
 
         Product savedProduct = productDAO.insertProduct(product);
-        System.out.println("service_saveProduct : "+ savedProduct);
 
         ProductResponseDto productResponseDto = new ProductResponseDto();
         productResponseDto.setNum(savedProduct.getNum());
         productResponseDto.setName(savedProduct.getName());
         productResponseDto.setPrice(savedProduct.getPrice());
         productResponseDto.setStock(savedProduct.getStock());
-
         return productResponseDto;
+
     }
 
 

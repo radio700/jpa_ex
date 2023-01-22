@@ -1,5 +1,8 @@
 package com.jinju.Controller;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.jinju.data.dto.ChangeProductNameDto;
 import com.jinju.data.dto.ProductDto;
@@ -19,8 +23,7 @@ import com.jinju.service.ProductService;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
-@Controller
-@ResponseBody
+@RestController
 @RequestMapping("/product")
 public class ProductController {
 
@@ -40,17 +43,21 @@ public class ProductController {
     }
 
 
+    //#region getMapping
     /**
      * getMapping
-     * @param number
+     * @param num
      * @return ResponseEntity.status(HttpStatus.OK).body(productResponseDto)
      */
     @GetMapping()
-    public ResponseEntity<ProductResponseDto> getProduct(Long number) {
-        ProductResponseDto productResponseDto = productService.getProduct(number);
+    public ResponseEntity<ProductResponseDto> getProduct(Long num) {
+        ProductResponseDto productResponseDto = productService.getProduct(num);
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@productResponseDto.toString()\n"+productResponseDto.toString());
+        
 
         return ResponseEntity.status(HttpStatus.OK).body(productResponseDto);
     }
+    //#endregion
 
 
     /**
@@ -60,12 +67,19 @@ public class ProductController {
      */
     @PostMapping()
     public ResponseEntity<ProductResponseDto> createProduct(@RequestBody ProductDto productDto) {
+    //public ResponseEntity<ProductResponseDto> createProduct(@RequestBody LinkedHashMap InfoMap) {
+        
+
+        
+        System.out.println("controller_productDto : "+productDto);
         ProductResponseDto productResponseDto = productService.saveProduct(productDto);
 
+        System.out.println("@@@@@@@@productResponseDto : "+productResponseDto.toString());
         return ResponseEntity.status(HttpStatus.OK).body(productResponseDto);
     }
 
 
+    //#region PutMapping
     /**
      * PutMapping
      * @param changeProductNameDto
@@ -82,19 +96,22 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.OK).body(productResponseDto);
 
     }
+    //#endregion
 
     
+
+    //#region delMapping
     /**
      * delMapping
-     * @param number
+     * @param num
      * @return ResponseEntity.status(HttpStatus.OK).body("정상적 삭제완료")
      * @throws Exception
      */
     @DeleteMapping()
-    public ResponseEntity<String> deleteProduct(Long number) throws Exception {
-        productService.deleteProduct(number);
+    public ResponseEntity<String> deleteProduct(Long num) throws Exception {
+        productService.deleteProduct(num);
 
         return ResponseEntity.status(HttpStatus.OK).body("정상적으로 삭제되었습니다.");
     }
-    
+    //#endregion
 }
