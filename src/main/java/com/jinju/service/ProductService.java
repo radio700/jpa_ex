@@ -4,11 +4,11 @@ import com.jinju.data.dto.ProductDto;
 import com.jinju.data.dto.ProductResponseDto;
 
 public interface ProductService {
-    ProductResponseDto getProduct(Long num);
+    ProductResponseDto getProduct(Long number);
 
     ProductResponseDto saveProduct(ProductDto productDto);
 
-    ProductResponseDto changeProductName(Long num, String name) throws Exception;
+    ProductResponseDto changeProductName(Long number, String name) throws Exception;
 
-    void deleteProduct(Long num) throws Exception;
+    void deleteProduct(Long number) throws Exception;
 }

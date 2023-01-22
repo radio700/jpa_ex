@@ -3,10 +3,13 @@ package com.jinju.data.dao.impl;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+import org.springframework.stereotype.Component;
+
 import com.jinju.data.dao.ProductDAO;
 import com.jinju.data.entity.Product;
 import com.jinju.data.repository.ProductRepository;
 
+@Component
 public class ProductDAOImpl implements ProductDAO{
 
     private final ProductRepository productRepository;

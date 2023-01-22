@@ -2,12 +2,15 @@ package com.jinju.service.Impl;
 
 import java.time.LocalDateTime;
 
+import org.springframework.stereotype.Service;
+
 import com.jinju.data.dao.ProductDAO;
 import com.jinju.data.dto.ProductDto;
 import com.jinju.data.dto.ProductResponseDto;
 import com.jinju.data.entity.Product;
 import com.jinju.service.ProductService;
 
+@Service
 public class ProductServiceImpl implements ProductService{
 
     private final ProductDAO productDAO;
