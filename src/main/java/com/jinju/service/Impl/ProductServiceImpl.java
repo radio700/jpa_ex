@@ -25,6 +25,7 @@ public class ProductServiceImpl implements ProductService{
 
 
 
+    //#region GET
     /**
      * getProduct
      * @param num
@@ -44,8 +45,8 @@ public class ProductServiceImpl implements ProductService{
         productResponseDto.setStock(product.getStock());
 
         return productResponseDto;
-        
     }
+    //#endregion
 
 
     /**
@@ -55,7 +56,6 @@ public class ProductServiceImpl implements ProductService{
      */
     @Override
     public ProductResponseDto saveProduct(ProductDto productDto) {
-        LOGGER.info("[saveProduct] productDTO : {}", productDto.toString());
         Product product = new Product();
         product.setName(productDto.getName());
         product.setPrice(productDto.getPrice());
@@ -64,7 +64,8 @@ public class ProductServiceImpl implements ProductService{
         product.setUpd_dttm(LocalDateTime.now());
 
         Product savedProduct = productRepository.save(product);
-        LOGGER.info("[saveProduct] savedProduct : {}", savedProduct);
+
+        System.out.println("savedProduct : "+savedProduct);
 
         ProductResponseDto productResponseDto = new ProductResponseDto();
         productResponseDto.setNum(savedProduct.getNum());
@@ -72,9 +73,12 @@ public class ProductServiceImpl implements ProductService{
         productResponseDto.setPrice(savedProduct.getPrice());
         productResponseDto.setStock(savedProduct.getStock());
 
+        System.out.println("productResponseDto : "+productResponseDto);
         return productResponseDto;
     }
 
+
+    //#region UPDATE
     /**
      * changeProductName
      * @param num
@@ -96,8 +100,10 @@ public class ProductServiceImpl implements ProductService{
 
         return productResponseDto;
     }
+    //#endregion
 
 
+    //#region DELETE
     /**
      * deleteProduct
      * @param num
@@ -106,7 +112,7 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public void deleteProduct(Long num) throws Exception {
         productRepository.deleteById(num);
-        
     }
+    //#endregion
     
 }

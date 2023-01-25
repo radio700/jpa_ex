@@ -29,4 +29,8 @@ public class Product {
 
     private LocalDateTime upd_dttm;
 
+    // public String ToString(){
+    //     return "num : "+num+"\nname : "+name+"\nprice : "+price+"\nstock ; "+stock+"\nins_dttm : "+ins_dttm+"\nupd_dttm : "+upd_dttm;
+    // }
+
 }
