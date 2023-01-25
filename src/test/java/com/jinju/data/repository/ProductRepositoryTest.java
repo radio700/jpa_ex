@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 
@@ -61,6 +63,15 @@ public class ProductRepositoryTest {
         productRepository.findByName("컴퓨터", Sort.by(Order.asc("price")));//씨발 쿼리보다 더어렵네
         
     }
+
+    @Test
+    public void 페이징_처리(){
+        Page<Product> productPage = productRepository.findByName("컴퓨터", PageRequest.of(0, 2));
+        System.out.println(productPage.getContent());
+        
+    }
+
+
 
 
 

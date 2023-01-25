@@ -74,17 +74,22 @@ List<Product> findByNameEndsWith(String name);
 List<Product> findByNameEndingWith(String name);
 List<Product> findByNameIsEndingWith(String name);
 
-// /* 정렬 처리하기 */
+/* 정렬 처리하기 */
 
-// // Asc : 오름차순, Desc : 내림차순 (예제 8.13) SELECT * FROM PRODUCT WHERE NAME = #{name} ORDER BY NUM 
+// Asc : 오름차순, Desc : 내림차순 (예제 8.13) SELECT * FROM PRODUCT WHERE NAME = #{name} ORDER BY NUM 
 List<Product> findByNameOrderByNumAsc(String name);
 List<Product> findByNameOrderByNumDesc(String name);
 
-// // 여러 정렬 기준 사용하기, And를 붙이지 않음 (예제 8.14)
+// 여러 정렬 기준 사용하기, And를 붙이지 않음 (예제 8.14)
 List<Product> findByNameOrderByPriceAscStockDesc(String name);
 
-// // 매개변수를 활용한 정렬 방법 (예제 8.15)
+// 매개변수를 활용한 정렬 방법 (예제 8.15)
 List<Product> findByName(String name, Sort sort);
+
+
+// 페이징 처리
+Page<Product> findByName(String name, Pageable pageable);
+
 
 
 
