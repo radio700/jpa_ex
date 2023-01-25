@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.jinju.data.entity.Product;
+import org.springframework.data.domain.*;
 
 public interface ProductRepository extends JpaRepository<Product,Long>{
     
@@ -80,10 +81,10 @@ List<Product> findByNameOrderByNumAsc(String name);
 List<Product> findByNameOrderByNumDesc(String name);
 
 // // 여러 정렬 기준 사용하기, And를 붙이지 않음 (예제 8.14)
-// List<Product> findByNameOrderByPriceAscStockDesc(String name);
+List<Product> findByNameOrderByPriceAscStockDesc(String name);
 
 // // 매개변수를 활용한 정렬 방법 (예제 8.15)
-// List<Product> findByName(String name, Sort sort);
+List<Product> findByName(String name, Sort sort);
 
 
 
