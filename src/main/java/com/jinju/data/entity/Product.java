@@ -6,9 +6,10 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
+@ToString(callSuper = true)
 @Table(name = "product")
 public class Product {
     
@@ -28,9 +29,4 @@ public class Product {
     private LocalDateTime ins_dttm;
 
     private LocalDateTime upd_dttm;
-
-    // public String ToString(){
-    //     return "num : "+num+"\nname : "+name+"\nprice : "+price+"\nstock ; "+stock+"\nins_dttm : "+ins_dttm+"\nupd_dttm : "+upd_dttm;
-    // }
-
 }
