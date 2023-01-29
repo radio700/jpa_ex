@@ -3,7 +3,6 @@ package com.jinju.data.repository;
 import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
@@ -11,9 +10,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
 
-import com.jinju.data.repository.ProductRepository;
-import com.jinju.data.dto.ProductDto;
-import com.jinju.data.dto.ProductResponseDto;
 import com.jinju.data.entity.Product;
 
 @SpringBootTest
@@ -72,6 +68,18 @@ public class ProductRepositoryTest {
     }
 
 
+    // @Test
+    // public void queryAnnotationTest() {
+    //     System.out.println(productRepository.findByName("펜"));
+    //     System.out.println(productRepository.findByNameParam("펜"));
+
+    //     List<Object[]> objects = productRepository.findByNameParam2("펜");
+    //     for (Object[] object : objects) {
+    //         System.out.println(object[0]);
+    //         System.out.println(object[1]);
+    //         System.out.println(object[2]);
+    //     }
+    // }
 
 
 

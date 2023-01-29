@@ -90,8 +90,18 @@ List<Product> findByName(String name, Sort sort);
 // 페이징 처리
 Page<Product> findByName(String name, Pageable pageable);
 
+/* @Query 어노테이션을 활용한 메소드 작성 */
+// 예제 8.21
+// @Query("SELECT p FROM Product p WHERE p.name = ?1")
+// List<Product> findByName(String name);
 
+// // 예제 8.22
+// @Query("SELECT p FROM Product p WHERE p.name = :name")
+// List<Product> findByNameParam(@Param("name") String name);
 
+// // 예제 8.23
+// @Query("SELECT p.name, p.price, p.stock FROM Product p WHERE p.name = :name")
+// List<Object[]> findByNameParam2(@Param("name") String name);
 
 
 
